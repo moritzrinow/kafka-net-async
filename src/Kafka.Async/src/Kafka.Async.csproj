@@ -10,7 +10,7 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>Kafka.Async</PackageId>
-    <PackageVersion>1.8.2-alpha.1</PackageVersion>
+    <PackageVersion>1.8.2-alpha1</PackageVersion>
     <Description>Async wrapper for Confluent's .NET Kafka consumer client.</Description>
     <PackageTags>Kafka;Async</PackageTags>
     <PackageProjectUrl>https://github.com/moritzrinow/kafka-net-async</PackageProjectUrl>
