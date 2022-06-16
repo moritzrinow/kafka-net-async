@@ -9,6 +9,15 @@ IHost host = Host.CreateDefaultBuilder(args)
                    {
                      IConfiguration configuration = provider.GetRequiredService<IConfiguration>();
 
+                     IProducer<string, string> producer = new ProducerBuilder<string, string>(configuration.GetSection("producer").Get<Dictionary<string, string>>()).Build();
+
+                     return producer;
+                   });
+                   
+                   services.AddSingleton(provider =>
+                   {
+                     IConfiguration configuration = provider.GetRequiredService<IConfiguration>();
+
                      IConsumer<string, string> consumer = new ConsumerBuilder<string, string>(configuration.GetSection("consumer").Get<Dictionary<string, string>>()).Build();
                      
                      consumer.Subscribe(configuration.GetValue<string>("topic"));

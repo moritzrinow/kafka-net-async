@@ -4,12 +4,18 @@ using System.Threading.Tasks;
 using Confluent.Kafka;
 
 /// <summary>
-/// Basic implementation of an asynchronous wrapper for <see cref="IConsumer{TKey,TValue}"/> instances.
+/// Asynchronous wrapper for <see cref="IConsumer{TKey,TValue}"/> instances.
 /// A dedicated thread is launched in the background waiting on consumptions to be "requested".
 /// <see cref="ConsumeResult{TKey,TValue}"/>s are written back to <see cref="TaskCompletionSource{TResult}"/>s being awaited on the consumer side.
+/// The lifetime of the wrapped consumer instance is managed externally.
+/// Disposing an instance of this type will not dispose the wrapped consumer instance.
+/// <see cref="AsyncConsumer{TKey,TValue}"/> instances should be disposed before the wrapped consumer instances.
+/// There can be multiple <see cref="AsyncConsumer{TKey,TValue}"/> instances wrapping one <see cref="IConsumer{TKey,TValue}"/> instance,
+/// just like there can be multiple threads calling <see cref="IConsumer{TKey,TValue}.Consume(CancellationToken)"/>.
+/// There can be multiple threads consuming from the same <see cref="IAsyncConsumer{TKey,TValue}"/> instance.
 /// </summary>
-/// <typeparam name="TKey"></typeparam>
-/// <typeparam name="TValue"></typeparam>
+/// <typeparam name="TKey">Type of the message key.</typeparam>
+/// <typeparam name="TValue">Type of the message value.</typeparam>
 public class AsyncConsumer<TKey, TValue> : IAsyncConsumer<TKey, TValue>
 {
   private readonly SemaphoreSlim consumerSemaphore = new(1, 1);

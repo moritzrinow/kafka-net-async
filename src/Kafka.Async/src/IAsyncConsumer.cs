@@ -13,6 +13,9 @@ public interface IAsyncConsumer<TKey, TValue> : IDisposable
   /// Consumes the next message asynchronously.
   /// </summary>
   /// <param name="cancellationToken"></param>
+  /// <exception cref="OperationCanceledException">cancellationToken was cancelled.</exception>
+  /// <exception cref="ConsumeException">Other consumption error.</exception>
+  /// <exception cref="ObjectDisposedException">Instance was disposed.</exception>
   /// <returns>Task that completes when a message was consumed or an error occured.</returns>
   Task<ConsumeResult<TKey, TValue>> ConsumeAsync(CancellationToken cancellationToken = default);
 }
