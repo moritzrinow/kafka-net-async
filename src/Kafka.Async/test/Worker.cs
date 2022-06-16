@@ -1,3 +1,5 @@
+// Copyright (c) 2022 Moritz Rinow
+
 namespace Kafka.Async.Test;
 
 using Confluent.Kafka;

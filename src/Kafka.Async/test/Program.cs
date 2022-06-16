@@ -1,3 +1,5 @@
+// Copyright (c) 2022 Moritz Rinow
+
 using Confluent.Kafka;
 using Kafka.Async;
 using Kafka.Async.Test;
@@ -25,11 +27,11 @@ IHost host = Host.CreateDefaultBuilder(args)
                      return consumer;
                    });
 
-                   services.AddSingleton<IAsyncConsumer<string, string>>(provider =>
+                   services.AddSingleton(provider =>
                    {
                      IConsumer<string, string> consumer = provider.GetRequiredService<IConsumer<string, string>>();
 
-                     return new AsyncConsumer<string, string>(consumer);
+                     return consumer.CreateAsyncConsumer();
                    });
                    
                    services.AddHostedService<Worker>();

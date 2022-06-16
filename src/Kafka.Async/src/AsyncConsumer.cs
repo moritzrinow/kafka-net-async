@@ -1,4 +1,6 @@
-﻿namespace Kafka.Async;
+﻿// Copyright (c) 2022 Moritz Rinow
+
+namespace Kafka.Async;
 
 using System.Threading.Tasks;
 using Confluent.Kafka;
@@ -7,6 +9,7 @@ using Confluent.Kafka;
 /// Asynchronous wrapper for <see cref="IConsumer{TKey,TValue}"/> instances.
 /// A dedicated thread is launched in the background waiting on consumptions to be "requested".
 /// <see cref="ConsumeResult{TKey,TValue}"/>s are written back to <see cref="TaskCompletionSource{TResult}"/>s being awaited on the consumer side.
+/// Messages are not buffered internally 
 /// The lifetime of the wrapped consumer instance is managed externally.
 /// Disposing an instance of this type will not dispose the wrapped consumer instance.
 /// <see cref="AsyncConsumer{TKey,TValue}"/> instances should be disposed before the wrapped consumer instances.
