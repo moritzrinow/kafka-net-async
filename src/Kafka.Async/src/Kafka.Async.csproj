@@ -12,15 +12,21 @@
     <PackageId>Kafka.Async</PackageId>
     <PackageVersion>1.8.2-alpha1</PackageVersion>
     <Description>Async wrapper for Confluent's .NET Kafka consumer client.</Description>
+    <IncludeSymbols>true</IncludeSymbols>
     <PackageTags>Kafka;Async</PackageTags>
     <PackageProjectUrl>https://github.com/moritzrinow/kafka-net-async</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/moritzrinow/kafka-net-async/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>Moritz Rinow</Authors>
     <Copyright>Copyright (c) 2022 Moritz Rinow</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Confluent.Kafka" Version="1.8.2" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="..\..\..\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
